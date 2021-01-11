@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PolyReader</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_song_picker">SongPickerActivity</string>
+    <string name="title_activity_file_picker">Choose files</string>
+    <string name="up">Up</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="screens_number">Number of windows</string>
+    <string name="test">test</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_number_picker">Enter a number</string>
+    <string name="back">Back</string>
+    <string name="title_activity_directory_chooser">Choose a directory</string>
+    <string name="initial_folder">Starting folder</string>
+    <string name="general">General</string>
+    <string name="open">Open</string>
+    <string name="reload">Reload</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    
+     <string name="AddFiles">Add files</string>
+ 	<string name="EnterPlaylistName">Enter readlist name</string>
+ 	<string name="SavePlaylist">Save readlist</string>
+ 	<string name="title_activity_save_playlist">Save readlist</string>
+ 	
+ 	<string name="delete_pl_delete_bt">Delete</string>
+    <string name="delete_pl_cancel_bt">Back</string>
+    <string name="delete_playlists">Delete readlists</string>
+    <string name="LoadPlaylist">Load readlist</string>
+    <string name="title_activity_delete_playlists">Delete readlists</string>
+    <string name="title_activity_load_playlist">Load readlist</string>
+    <string name="ClearScreen">Clear screen</string>
+
+    <string name="settings_SelectorSize">Selectors\' size</string>
+    <string name="FontSize">Font size</string>
+    <string name="FontSizeDefault">12</string>
+
+</resources>

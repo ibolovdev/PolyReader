@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    
+     <PreferenceCategory android:title="@string/general">
+		     <Preference android:key="initial_folder" android:title="@string/initial_folder">
+		     	<intent    
+		     	    android:targetPackage="com.ibo_android.polyreader"
+            		android:targetClass="com.ibo_android.polyreader.DirectoryChooserActivity"
+		     	    android:action="com.ibo_android.polyreader.startDirectoryChooserActivity" />
+			</Preference>
+		    
+		    <!--  >Preference android:key="number_of_screens" android:title="@string/screens_number">
+		     	<intent   
+		     	    android:targetPackage="com.ibo_android.polyreader"
+            		android:targetClass="com.ibo_android.polyreader.FontSizePickerActivity"
+		     	     android:action="startNumberPickerActivity" />
+			</Preference-->
+
+		 <Preference android:key="text_size" android:title="@string/FontSize" android:defaultValue="@string/FontSizeDefault">
+			 <intent
+				 android:targetPackage="com.ibo_android.polyreader"
+			     android:targetClass="com.ibo_android.polyreader.FontSizePickerActivity"
+			     android:action="com.ibo_android.polyreader.startChooseFontSizeActivity" />
+		 </Preference>
+
+		 <ListPreference android:entryValues="@array/setting_selected_selectorsize_values"
+			 android:dependency="settings_selectorSize"
+			 android:title="@string/settings_SelectorSize"
+			 android:entries="@array/setting_selected_selectorsize_names"
+			 android:key="settings_selectorSize"
+			 android:defaultValue="@array/setting_selected_selectorsize_values"/>
+			   
+    </PreferenceCategory>     
+     	
+</PreferenceScreen>
+
+ 

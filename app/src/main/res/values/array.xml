@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="setting_selected_selectorsize_names">
+        <item>System</item>
+        <item>Small</item>
+        <item>Normal</item>
+        <item>Large</item>
+        <item>ExtraLarge</item>
+    </string-array>
+
+    <string-array name="setting_selected_selectorsize_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+
+</resources>

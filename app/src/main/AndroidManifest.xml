@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ibo_android.polyreader"
+    android:versionCode="7"
+    android:versionName="1.2.3" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="24" />
+
+    <!--  uses-permission android:name="android.permission.INTERNET" /-->
+    <!--  uses-permission android:name="android.permissions.NETWORK_ACCESS" /-->
+    <!--  uses-permission android:name="android.permissions.ACCESS_NETWORK_STATE" /-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:label="@string/app_name" >
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FilePickerActivity"
+            android:label="@string/title_activity_file_picker" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+          <activity
+            android:name=".SavePlaylistActivity"
+            android:label="@string/title_activity_save_playlist" >
+        </activity>
+           <activity
+            android:name=".DeletePlaylistsActivity"
+            android:label="@string/title_activity_delete_playlists" >
+        </activity>
+          <activity
+            android:name=".LoadPlaylistActivity"
+            android:label="@string/title_activity_load_playlist" >
+        </activity>
+        <activity
+            android:name=".FontSizePickerActivity"
+            android:label="@string/title_activity_number_picker"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.ibo_android.polyreader.startChooseFontSizeActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DirectoryChooserActivity"
+            android:label="@string/title_activity_directory_chooser" >
+            
+            <intent-filter>
+                <action android:name="com.ibo_android.polyreader.startDirectoryChooserActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

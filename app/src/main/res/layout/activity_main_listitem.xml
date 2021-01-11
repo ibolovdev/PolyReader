@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info"
+            tools:text="Info" />
+
+        <Button
+            android:id="@+id/btClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close"
+            tools:text="Close" />
+
+        <EditText
+            android:id="@+id/txtURL"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:ems="10"
+            android:inputType="text"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btReload"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:drawableBottom="@drawable/reload_32_trans" />
+
+        <Button
+            android:id="@+id/btPlus"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:drawableBottom="@drawable/make_bigger_arrows_32_trans" />
+
+        <Button
+            android:id="@+id/btMinus"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:drawableBottom="@drawable/make_smaller_arrows_32_trans" />
+
+        <Button
+            android:id="@+id/btOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="@string/open" />
+
+    </LinearLayout>
+
+   
+
+ 
+
+     <com.ibo_android.polyreader.webviewex
+         android:id="@+id/wvView"
+         
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.55" />
+     
+     
+      <!-- com.ibo_android.polyreader.webviewex
+         android:id="@+id/wvView"
+          android:focusable="true"  
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.55" /-->
+     
+
+</LinearLayout>

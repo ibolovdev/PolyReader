@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ibo_android.polyreader.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+
+    	<item android:id="@+id/clear_screen" android:title="@string/ClearScreen"  ></item>
+    <item android:id="@+id/add_files" android:title="@string/AddFiles"></item>
+    <item android:id="@+id/save_playlist" android:title="@string/SavePlaylist"  ></item>
+    <item android:id="@+id/load_playlist" android:title="@string/LoadPlaylist"  ></item>
+    <item android:id="@+id/delete_playlist" android:title="@string/delete_playlists"  ></item>
+</menu>
