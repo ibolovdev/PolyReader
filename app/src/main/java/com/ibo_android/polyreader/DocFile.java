@@ -3,6 +3,7 @@ package com.ibo_android.polyreader;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,7 +16,9 @@ public class DocFile  implements Parcelable, Comparable<DocFile>
 	Integer pagenumber = 1;
 	float page_scale =  1;
 	Integer cpage_height = 600;
-	
+	public byte bIsDirectory = 0;
+
+
 	public DocFile ( String pCode, String ptitle, String pfpath, Integer ppagenumber, float ppagescale , Integer pcpage_height )
 	{	 
 		code = pCode; 
@@ -63,6 +66,7 @@ public class DocFile  implements Parcelable, Comparable<DocFile>
 		 dst.writeInt(pagenumber);
 		 dst.writeFloat(page_scale);
 		 dst.writeInt(cpage_height);
+		 dst.writeByte(bIsDirectory);
 		
 	}
 	
@@ -73,11 +77,12 @@ public class DocFile  implements Parcelable, Comparable<DocFile>
 		  pagenumber = in.readInt();
 		  page_scale= in.readFloat();
 		  cpage_height = in.readInt();
+		  bIsDirectory = in.readByte();
  }
 
 
-	@Override
-	public int compareTo(DocFile another) {
+	//@Override
+	/*public int compareTo(DocFile another) {
 		File f_this = new File(this.filepath);
 		File f_another = new File(another.filepath);
 		
@@ -88,9 +93,46 @@ public class DocFile  implements Parcelable, Comparable<DocFile>
 			return 1;
 			
 		return this.filepath.compareTo(another.filepath);
+	}*/
+
+	public int compareTo(DocFile another) {
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+		{
+			if ((this.bIsDirectory == 1) && !(another.bIsDirectory == 1) )
+				return -1;
+
+			if (!(this.bIsDirectory == 1) && (another.bIsDirectory == 1))
+				return 1;
+
+		}
+		else
+		{
+			File f_this = new File(this.filepath);
+			File f_another = new File(another.filepath);
+
+			if (f_this.isDirectory() && !f_another.isDirectory())
+				return -1;
+
+			if (!f_this.isDirectory() && f_another.isDirectory())
+				return 1;
+
+		}
+
+
+
+		/*File f_this = new File(this.filepath);
+		File f_another = new File(another.filepath);
+
+		if (isDirectory(f_this) && !isDirectory(f_another))
+			return -1;
+
+		if (!isDirectory(f_this) && isDirectory(f_another))
+			return 1;*/
+
+		return this.filepath.compareTo(another.filepath);
+
 	}
-	 
-	 
 	/* public static boolean Contains(ArrayList<DocFile> al, DocFile mf)
 		{		
 			for (DocFile dfile : al ) {

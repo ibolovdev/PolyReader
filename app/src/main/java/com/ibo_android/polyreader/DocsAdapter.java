@@ -37,6 +37,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -129,7 +130,15 @@ public class DocsAdapter extends android.widget.BaseAdapter {
 			v = minfl.inflate(R.layout.activity_main_listitem, null);
 			holder = new DocFileViewHolder();
 			holder.mURL = (TextView)v.findViewById(R.id.txtURL);
-			holder.mWV = (WebView)v.findViewById(R.id.wvView);
+
+			//llwvRepl
+			webviewex      mWebView = new webviewex(_act.get().getApplicationContext());
+			LinearLayout mll      = v.findViewById(R.id.llwvRepl);
+			mll.addView(mWebView);
+
+			holder.mWV = mWebView;
+
+			//holder.mWV = (WebView)v.findViewById(R.id.wvView);
 			 
 			holder.btOpen = (Button)v.findViewById(R.id.btOpen);
 			holder.btOpen.setTag(holder);
@@ -531,7 +540,11 @@ public class DocsAdapter extends android.widget.BaseAdapter {
 @SuppressLint("NewApi")
 private void   ShowPDF(WebView wv,TextView tv, String url,DocFile df, boolean bFromOpen)
 {
-	
+	//wv.destroy();
+	//wv = new
+
+			//wv = new webviewex(_act.get().getApplicationContext());
+
 	WebSettings websets = wv.getSettings();
 	websets.setJavaScriptEnabled(true);
 //	websets.enableSmoothTransition();
@@ -553,7 +566,7 @@ private void   ShowPDF(WebView wv,TextView tv, String url,DocFile df, boolean bF
  
 	
 	//wv.setWebChromeClient(new WebChromeClient() );
-	wv.setWebViewClient(new WebViewClient() {
+/*	wv.setWebViewClient(new WebViewClient() {
 	    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) 
 	    {		      		    	
 	    	Toast.makeText(view.getContext(), description, Toast.LENGTH_LONG).show();
@@ -573,7 +586,10 @@ private void   ShowPDF(WebView wv,TextView tv, String url,DocFile df, boolean bF
 	    }*/
 	    
 	       
-	});		
+	//});*/
+
+
+	wv.setWebViewClient(new MyWebViewClient());
  
 	//url = "/storage/emulated/0/languages/sp/GarciaMarquez-ElAmorenlosTiemposdelColera.pdf";
 	
@@ -690,6 +706,9 @@ private void   ShowPDF(WebView wv,TextView tv, String url,DocFile df, boolean bF
 	 
 	if (f.exists())
 	{
+		wv.loadUrl("");
+		wv.clearCache(false);
+		wv.clearHistory();
 		wv.loadUrl("file://" +  _act.get().getFilesDir() + "/" + testpdf_file);
 		tv.setText(url);
 	}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -15,8 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
-
+import android.widget.Toast;
 
 
 public class FilePickerActivity extends Activity {
@@ -61,7 +61,19 @@ private static final String ROOT_DIRECTORY = "ROOT_DIRECTORY";
 
 		// Toast.makeText(this, sel, Toast.LENGTH_LONG).show();
 
-		psa = new FilePickerAdapter(InitialDir, this, selfiles_asparam);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+		{
+			psa = new FilePickerContentProviderStrategyAdapter(InitialDir, this, selfiles_asparam);
+		}
+		else
+		{
+			psa = new FilePickerAdapter(InitialDir, this, selfiles_asparam);
+		}
+
+		if (psa.dfiles.isEmpty())
+		{
+			Toast.makeText(this, R.string.no_files, Toast.LENGTH_LONG).show();
+		}
 
 		fileslist = (ListView) findViewById(R.id.lv_file_picker_Files);
 	//	 Collections.sort(psa.mfiles);

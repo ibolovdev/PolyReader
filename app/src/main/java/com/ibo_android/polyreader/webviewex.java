@@ -32,7 +32,18 @@ public class webviewex extends WebView {
 	    public boolean onTouchEvent(MotionEvent event){
 	        requestDisallowInterceptTouchEvent(true);
 	        return super.onTouchEvent(event);
-	    }    
-	
+	    }
+
+	/*@override
+	protected void ondestroy () {
+		super.ondestroy ();
+		if (webview_projectinfo!=null) {
+			webview_projectinfo.removeallviews ();
+			webview_projectinfo.destroy ();
+			webview_projectinfo=null;
+			ll_webview.removeallviews ();
+			ll_webview=null;
+		}
+	}*/
 
 }

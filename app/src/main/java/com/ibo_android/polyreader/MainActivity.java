@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -89,11 +90,25 @@ import android.widget.RadioButton;
 //change the position of the actions, i cannot see the words, ok
 
 //26-9-20
+//25-04-21
+/*
 
+We've detected that your app contains the requestLegacyExternalStorage flag in the manifest file of one or more of your app bundles or APKs.
 
+Developers with apps on devices running Android 11+ must use scoped storage to give users better access control over their device storage.
+To release your app on Android 11 or newer after 5 May, you must either:
 
+Update your app to use more privacy-friendly best practices, such as the storage access framework or Media Store API
+Update your app to declare the All files access (MANAGE_EXTERNAL_STORAGE) permission in the manifest file, and complete the All files access permission declaration
+in Play Console from 5 May
+Remove the All files access permission from your app entirely
+For apps targeting Android 11, the requestLegacyExternalStorage flag will be ignored. You must use the All files access permission to retain broad access.
 
+Apps requesting access to the All files access permission without a permitted use will be removed from Google Play, and you won't be able to publish updates.
 
+https://support.google.com/googleplay/android-developer/answer/10467955
+
+*/
 
 
 public class MainActivity extends Activity {
@@ -151,9 +166,83 @@ public class MainActivity extends Activity {
 		docslist.setPadding(20, 0, 20, 0);
 		
 	}
-	
-	
+
 	private void RequestPermissions()
+	{
+		if (Build.VERSION.SDK_INT < 23)
+		{
+			return;
+		}
+
+
+		boolean bWriteExStorageNotGranted = ContextCompat.checkSelfPermission(this,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				!= PackageManager.PERMISSION_GRANTED;
+
+		boolean breadExStorageNotGranted = ContextCompat.checkSelfPermission(this,
+				Manifest.permission.READ_EXTERNAL_STORAGE)
+				!= PackageManager.PERMISSION_GRANTED;
+
+
+		// Here, thisActivity is the current activity
+		if (bWriteExStorageNotGranted || breadExStorageNotGranted ) {
+
+			// Should we show an explanation?
+			if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+					ActivityCompat.shouldShowRequestPermissionRationale(this,
+							Manifest.permission.READ_EXTERNAL_STORAGE)   ) {
+
+				// Show an expanation to the user *asynchronously* -- don't block
+				// this thread waiting for the user's response! After the user
+				// sees the explanation, try again to request the permission.
+
+			/*	Snackbar.make(getActivity().findViewById(android.R.id.content),
+						"Please Grant Permissions to upload profile photo",
+						Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
+						new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								requestPermissions(
+										new String[]{Manifest.permission
+												.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+										PERMISSIONS_MULTIPLE_REQUEST);
+							}
+						}).show();*/
+
+
+
+			} else {
+
+				// No explanation needed, we can request the permission.
+
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE },
+						MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+				// MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+				// app-defined int constant. The callback method gets the
+				// result of the request.
+			}
+		}
+
+	/*	if (Build.VERSION.SDK_INT > 29)
+		{
+			if (Environment.isExternalStorageManager()) {
+				//todo when permission is granted
+			} else {
+				//request for the permission
+				Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+				Uri uri = Uri.fromParts("package", getPackageName(), null);
+				intent.setData(uri);
+				startActivity(intent);
+			}
+		}*/
+
+
+	}//RequestPermissions
+	
+	private void RequestPermissions2()
 	{		
 		if (Build.VERSION.SDK_INT < 23)
 		{
@@ -188,6 +277,21 @@ public class MainActivity extends Activity {
 		        // result of the request.
 		    }
 		}
+
+		if (Build.VERSION.SDK_INT > 29)
+		{
+
+			if (Environment.isExternalStorageManager()) {
+				//todo when permission is granted
+			} else {
+				//request for the permission
+				Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+			Uri uri = Uri.fromParts("package", getPackageName(), null);
+				intent.setData(uri);
+				startActivity(intent);
+			}
+		}
+
 			
 		
 	}//RequestPermissions
